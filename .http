@@ -1,0 +1,53 @@
+### List products
+GET http://localhost:8080/product
+Accept: application/json
+
+### Get product by id (example: id=1)
+GET http://localhost:8080/product/1
+Accept: application/json
+
+### Place order (no coupon)
+POST http://localhost:8080/order
+Content-Type: application/json
+api_key: apitest
+
+{
+  "items": [
+    { "productId": "1", "quantity": 2 },
+    { "productId": "3", "quantity": 1 }
+  ]
+}
+
+### Place order (with coupon)
+POST http://localhost:8080/order
+Content-Type: application/json
+api_key: apitest
+
+{
+  "couponCode": "FIFTYOFF",
+  "items": [
+    { "productId": "2", "quantity": 1 }
+  ]
+}
+
+### Place order (invalid api key example)
+POST http://localhost:8080/order
+Content-Type: application/json
+api_key: wrongkey
+
+{
+  "items": [
+    { "productId": "1", "quantity": 1 }
+  ]
+}
+
+### Place order (invalid product example)
+POST http://localhost:8080/order
+Content-Type: application/json
+api_key: apitest
+
+{
+  "items": [
+    { "productId": "999", "quantity": 1 }
+  ]
+}
